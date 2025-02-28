@@ -27,24 +27,31 @@ public class ConnectionManager : MonoBehaviour, INetworkRunnerCallbacks
         SessionProperties = 2
     }
 
-    [Header("Room configuration")] private GameMode _gameMode = GameMode.Shared;
-     [SerializeField] private string _roomName = "";
+    [Header("Room configuration")]
+    private GameMode _gameMode = GameMode.Shared;
+    [SerializeField] private string _roomName = "";
     private bool _connectOnStart = false;
 
     [Tooltip(
         "Set it to 0 to use the DefaultPlayers value, from the Global NetworkProjectConfig (simulation section)")]
     private int _playerCount = 0;
 
+
     [Header("Room selection criteria")]
     private ConnectionCriterias _connectionCriterias = ConnectionCriterias.RoomName;
 
-    [Header("Fusion settings")] [Tooltip("Fusion runner. Automatically created")] [SerializeField, ReadOnly]
+
+    [SerializeField] private NetworkObject _userPrefab;
+    [Header("Fusion settings")]
+    [Tooltip("Fusion runner. Automatically created")]
+    [SerializeField, ReadOnly]
     private NetworkRunner _runner;
+
     public NetworkRunner Runner => _runner;
     private INetworkSceneManager _sceneManager;
 
-    [Header("Local user spawner")] 
-    [SerializeField] private NetworkObject _userPrefab;
+    [Header("Local user spawner")]
+
     [SerializeField] private List<Transform> _playerSpawnTransformList;
 
     // Dictionary of spawned user prefabs, to store them on the server for host topology, and destroy them on disconnection (for shared topology, use Network Objects's "Destroy When State Authority Leaves" option)
