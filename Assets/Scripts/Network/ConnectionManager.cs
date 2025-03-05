@@ -40,8 +40,6 @@ public class ConnectionManager : MonoBehaviour, INetworkRunnerCallbacks
     [Header("Room selection criteria")]
     private ConnectionCriterias _connectionCriterias = ConnectionCriterias.RoomName;
 
-
-    [SerializeField] private NetworkObject _userPrefab;
     [Header("Fusion settings")]
     [Tooltip("Fusion runner. Automatically created")]
     [SerializeField, ReadOnly]
@@ -51,6 +49,7 @@ public class ConnectionManager : MonoBehaviour, INetworkRunnerCallbacks
     private INetworkSceneManager _sceneManager;
 
     [Header("Local user spawner")]
+    [SerializeField] private NetworkObject _userPrefab;
 
     [SerializeField] private List<Transform> _playerSpawnTransformList;
 

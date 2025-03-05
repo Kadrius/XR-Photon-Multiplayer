@@ -6567,9 +6567,9 @@ namespace Fusion.Editor {
 
       public delegate Type GetDrawerTypeForPropertyAndTypeDelegate(SerializedProperty property, Type type);
       public delegate Type GetDrawerTypeForTypeDelegate(Type type, Type[] renderPipelineTypes, bool isManagedReference);
-      
-      
-      
+
+
+
 #if UNITY_2023_3_OR_NEWER
       public static readonly GetDrawerTypeForPropertyAndTypeDelegate GetDrawerTypeForPropertyAndType =
         CreateEditorMethodDelegate<GetDrawerTypeForPropertyAndTypeDelegate>(
@@ -6583,7 +6583,8 @@ namespace Fusion.Editor {
           nameof(GetDrawerTypeForType),
           BindingFlags.Static | BindingFlags.NonPublic);
 #else
-      private delegate Type LegacyGetDrawerTypeForTypeDelegate(Type type);
+            //private delegate Type LegacyGetDrawerTypeForTypeDelegate(Type type); Changed to the next line because of this: https://discussions.unity.com/t/need-help-part-of-unity-inspector-missing/943936/10
+            private delegate Type LegacyGetDrawerTypeForTypeDelegate(Type type, bool isPropertyTypeAManagedReference = false);
       private static readonly LegacyGetDrawerTypeForTypeDelegate LegacyGetDrawerTypeForType =
         CreateEditorMethodDelegate<LegacyGetDrawerTypeForTypeDelegate>(
           "UnityEditor.ScriptAttributeUtility",
